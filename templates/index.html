@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Resume | Monali </title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1 id="typewriter"></h1>
+      <p>Monali Patel| monali.patel1811@gmail.com | 
+        <a href="https://github.com/monaliptl" target="_blank" rel="noopener noreferrer">GitHub</a> | 
+  <a href="https://www.linkedin.com/in/monali-patel-/" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
+    </header>
+
+    <section>
+      <h2>Summary</h2>
+      <p>Dedicated IT professional with over 5 years of experience providing reliable technical support 
+        and ensuring positive end-user experiences. Skilled in handling user requests, guiding users through troubleshooting steps, maintaining uptime
+         and delivering user focused solution. Currently pursuing a Master’s degree in Cloud Computing with hands-on training in AWS and Azure. Committed to continuous learning with problem-solving mindset,
+          with a passion for staying ahead in a fast-evolving tech landscape.</p>
+    </section>
+
+    <section>
+      <h2>Skills</h2>
+      <ul>
+        <li>AWS: EC2, S3, IAM, CloudWatch, RDS, LAMBDA, Route 53</li>
+        <li>Azure: Virtual Machine, Storage, Active Directory, Role-Based Access Control</li>
+    
+        <li>Front End: HTML, CSS</li>
+        <li>Back End: Python, Mysql</li>
+        <li>Version Control: Git, GitHub</li>
+    
+      </ul>
+    </section>
+
+    <section>
+      <h2>Course Experience</h2>
+      <ul>
+        <li><strong>Cloud computing  –  Warsaw School of Computer Science – Poland </strong> (Sep 2023 – Present)<br>
+          •	Gained in-depth knowledge of cloud architectures including IaaS, PaaS and SaaS models.<br>
+          •	Explored different cloud deployment models: Public Cloud, Private Cloud, and Hybrid Cloud to understand their use cases and benefits.<br>
+          •	Gained hands-on experience with various cloud services including compute, storage, database, serverless computing and security services on platforms like AWS and Azure.<br>
+          •	Compute: Provisioned and managed virtual machines using Azure Virtual Machines and AWS EC2, optimizing performance and cost while ensuring secure access.<br>
+          •	Storage: Utilized scalable storage solutions AWS S3 for efficient data storage and retrieval.<br>
+          •	Database: Worked with managed database services like AWS RDS to support application data needs with high availability.<br>
+          •	Serverless Computing: Developed serverless applications using AWS Lambda.<br>
+          •	Security: Implemented identity and access management policies using Azure Active Directory and AWS IAM to safeguard cloud resources.<br>
+          • Built CI/CD pipelines using GitHub Actions and deployed microservice on AWS EC2.<br>
+        </li>
+        
+      </ul>
+    </section>
+
+    <section>
+        <h2> Lab Work on Github</h2>
+        <ul>
+         <li> VM Migration to AWS   </li>
+         <li> Automating EC2 and RDS Start/Stop and Backup Tasks  </li>
+         <li>	Azure Active Directory & Role Management  </li>
+         <li>	CI/CD Pipeline for Resume Deployment using GitHub Actions and AWS EC2  </li>
+        </ul>
+    </section>
+
+    <section>
+      <h2>Education</h2>
+      <ul>
+      <li>MSc in Cloud Computing  </strong> – Warsaw School of Computer Science (2023 - Present)</li>	</p>
+      <li>Bachelor of Engineering  </strong> – Gujarat Technological University (2010 - 2014)
+      </li>	 </p>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Certificates</h2>
+      <ul>
+        <li>100 Days of Python code   – Udemy</li>
+        <li>Introduction to Artificial Intelligence  – arisa</li>
+              </ul>
+    </section>
+  </div>
+
+  <script>
+    const text = "Monali - Open to Work in Cloud roles";
+    const output = document.getElementById("typewriter");
+    let idx = 0;
+    function type() {
+      if (idx < text.length) {
+        output.innerHTML += text.charAt(idx);
+        idx++;
+        setTimeout(type, 70);
+      }
+    }
+    type();
+  </script>
+</body>
+</html>
