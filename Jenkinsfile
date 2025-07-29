@@ -9,20 +9,36 @@ pipeline {
     }
 
     stages {
-        stage('Login to ECR') {
-            steps {
-                script {
-                    sh '''
-                    aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $ECR_REGISTRY
-                    '''
+        stage('Clone Repo'){
+            steps{
+                script{
+                    withCredentials([string(credentialsId: 'github-token', variable: 'GIT_TOKEN')]) {
+                        sh '''
+                        rm -rf repo || true
+                        git clone https://$GIT_TOKEN@github.com/monaliptl/Jenkins-Docker-Flask.git repo
+                        '''
+
+                    }
+                        
                 }
             }
+
         }
 
-        stage('Pull Docker Image') {
+        stage('Build and Push Docker Image') {
             steps {
                 script {
-                    sh "docker pull $ECR_REGISTRY/$IMAGE_NAME:latest"
+                    dir('repo') {
+                        withCredentials([[$class: 'AmazonWebServicesCredentialsBinding',credentialsId: 'aws-creds']]) {
+                        sh '''
+                        aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $ECR_REGISTRY
+                        docker build -t $IMAGE_NAME:latest .
+                        docker tag $IMAGE_NAME:latest $ECR_REGISTRY/$IMAGE_NAME:latest
+                        docker push $ECR_REGISTRY/$IMAGE_NAME:latest
+                         ''' 
+                        }
+                    }
+                   
                 }
             }
         }
@@ -31,13 +47,15 @@ pipeline {
             steps {
                 script {
                     sh '''
-                    docker rm -f CONTAINER_NAME || true
-                    docker run -d -p 80:5000 --name resume-site $ECR_REGISTRY/$IMAGE_NAME:latest
+                    docker rm -f $CONTAINER_NAME || true
+                    docker run -d -p 80:5000 --name $CONTAINER_NAME $ECR_REGISTRY/$IMAGE_NAME:latest
                     '''
                 }
             }
         }
     }
 }
+
+
 
 
